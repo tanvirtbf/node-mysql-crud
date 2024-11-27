@@ -1,9 +1,15 @@
 const express = require('express')
 const colors = require('colors')
+const morgan = require('morgan')
+const dotenv = require('dotenv')
+
+// configure dotenv
+dotenv.config({ path: '' })
 
 const app = express()
 
 // middlewares
+app.use(morgan('dev'))
 
 // routes
 app.get('/test',(req,res)=>{
@@ -11,10 +17,10 @@ app.get('/test',(req,res)=>{
 })
 
 // PORT 
-const PORT = 8080
+const PORT = process.env.PORT || 8000
 
 
 // listen
 app.listen(PORT, () => {
-  console.log('Server Running' .bgCyan)
+  console.log(`Server Running on port ${process.env.PORT}` .bgCyan)
 })
